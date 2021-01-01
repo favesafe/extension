@@ -12,10 +12,11 @@
         "default_popup": "popup.html"
     }, 
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["background.js"],
+        "persistent": false
     },
     "web_accessible_resources": [
         "privacy_domains_data.json"
     ],
-    "permissions": ["tabs"]
+    "permissions": ["activeTab"]
 }

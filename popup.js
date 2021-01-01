@@ -1,11 +1,8 @@
-document.addEventListener('DomContentLoaded', () => {
-    document.querySelector('button').addEventListener('click', 
-        onclick, false)
-    
-    function onclick() {
-        console.log("kkkk")
+document.addEventListener('DOMContentLoaded', function () {
+    let btn = document.querySelector('button');
+    btn.addEventListener('click', function() {
+        console.log("window.location.href")
         chrome.runtime.sendMessage({
-            url: window.location.href,
-        })
-    }
-})
+        });
+    });
+});

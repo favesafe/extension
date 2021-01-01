@@ -8,18 +8,19 @@ function goJsonUrl(path, domain) {
         })
 }
 
-function findUrl(url){
+function findUrl(){
     try {
         adddalert("etsi sivusta tiedo prkl")
     }
     catch(err) {
-        const domain = url.replace(/^w*.\./, '')
-        goJsonUrl('/privacy_domains_data.json', domain)
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+            let url = new URL(tabs[0].url);
+            const domain = url.hostname.replace(/^w*.\./, '')
+            goJsonUrl('/privacy_domains_data.json', domain)
+        });
     }
 }
 
-chrome.runtime.onMessage.addListener(function (req,
-    send, sendres){
-        console.log(urk)
-        findUrl(req.url)
-    })
+chrome.runtime.onMessage.addListener(function (req, send, sendres){
+        findUrl()
+})
