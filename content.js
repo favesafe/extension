@@ -10,7 +10,8 @@ const findPrivacyLink = () => {
 
     console.log(privacyLinks);
     chrome.runtime.sendMessage({
-        payload:{
+        message: "links",
+        payload: {
             linksFound:privacyLinks.length > 0,
             links: privacyLinks
         }
