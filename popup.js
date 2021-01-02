@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
-    let btn = document.querySelector('button');
-    btn.addEventListener('click', function() {
-        console.log("window.location.href")
-        chrome.runtime.sendMessage({
-        });
-    });
-});
+const searchPrivacyPolicy = () => {
+    chrome.runtime.sendMessage({from: "popup"})
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    let button = document.querySelector('button');
+    button.addEventListener('click', () => searchPrivacyPolicy())
+})
