@@ -1,4 +1,3 @@
-
 const findJsonUrl = (domain) => {
 /* Check if we find privacy url for domain from json-file and open a new tab */
     fetch(chrome.extension.getURL('/privacy_domains_data.json'))
