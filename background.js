@@ -9,17 +9,13 @@ const findJsonUrl = (domain) => {
         })
 }
 
-/* 
-Tiedetyt bugit: Jos avaat esim 1. Grammarly.com 2. hm.com ja siirryt hm jälkeen grammarlyyn
-Avaa se hm.comin privacy policyn, sillä content.js loadaa ainoastaan kerran ja viimesimmän sivun arvo 
-tallennetaan scraped url
-*/
-
-const openPrivacyTab = () => {
-    chrome.tabs.create({url: scraped_url})
+const openPrivacyTab = (privacy_url) => {
+/* Opens privacy policy of website in a new tab */
+    chrome.tabs.create({url: privacy_url})
 }
 
 const openJsonUrl = () => {
+/* Checks if privacy policy url is stored in json file */
     chrome.tabs.query({active: true, currentWindow: true}, tabs => {
         const url = new URL(tabs[0].url);
         const domain = url.hostname.replace(/^w*.\./, '')
@@ -28,18 +24,12 @@ const openJsonUrl = () => {
 }
 
 
-/* This is a scraped privacy policy url from content.js */ 
-let scraped_url;
-
 chrome.runtime.onMessage.addListener((msg, sender) => {
+/* Gets privacy policy url from content script, check if url is valid else try to find url from json-file */
     if (msg.from == 'content') {
-        console.log('background row 28')
-        console.log(msg.links)
-        scraped_url = msg.links
-    }
-
-    if (msg.from == 'popup') {
-        if (scraped_url != '') openPrivacyTab()
+        console.log(msg.from)
+        const url = msg.url
+        if (url != '') openPrivacyTab(url)
         else openJsonUrl()
     }
 })

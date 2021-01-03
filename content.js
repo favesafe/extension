@@ -1,4 +1,5 @@
 window.onload= () => findPrivacyLink();
+let privacyPage;
 
 const findPrivacyLink = () => {
     /* Get all links in a document */
@@ -6,27 +7,10 @@ const findPrivacyLink = () => {
     const privacyLinks = links.filter(containsPrivacy);
 
     // Ruma scripti jolla testasin content.js toimivuutta
-    let privacyPage;
     if (privacyLinks.length > 1){
         privacyPage = privacyLinks[0].href
-    }else{
-        privacyPage = ''
     }
     console.log(privacyPage)
-
-    // Testing with only one link
-    chrome.runtime.sendMessage({
-        from: "content",
-        links: privacyPage
-    })
-
-    /*chrome.runtime.sendMessage({
-        message: "links",
-        payload: {
-            linksFound: privacyLinks.length > 0,
-            links: privacyLinks
-        }
-    });*/
 }
 
 const containsPrivacy = (item) => {
@@ -38,3 +22,13 @@ const containsPrivacy = (item) => {
     return  href || innerText
 }
 
+chrome.runtime.onMessage.addListener((msg, sender) => {
+    /* When user clicks popup button, this sends a privacy policy url of this tab to background script */
+    
+    if(msg.from == "popup"){
+        chrome.runtime.sendMessage({
+            from: "content",
+            url: privacyPage
+        })
+    }
+})
