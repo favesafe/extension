@@ -1,0 +1,45 @@
+.container {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+
+button, input {
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+    outline: inherit;
+}
+
+button {
+    background-color: #142A40;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+}
+
+input:focus, input:active {
+    outline: none;
+}
+
+label {
+    color: #333333;
+    margin-top: 15px;
+}
+
+input {
+    border: 1px solid #142A40;
+    border-radius: 5px;
+    padding: 10px;
+    color: #333333;
+    margin-bottom: 4px;
+    margin-top: 2px;
+}
+
+p {
+    color: red;
+}
