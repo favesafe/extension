@@ -22,7 +22,6 @@ const openJsonUrl = () => {
     })
 }
 
-
 chrome.runtime.onMessage.addListener((msg, sender) => {
 /* Gets privacy policy url from content script, check if url is valid else try to find url from json-file */
     if (msg.from == 'content') {

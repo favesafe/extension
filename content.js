@@ -5,7 +5,7 @@ const findPrivacyLink = () => {
 
     // Ruma scripti jolla testasin content.js toimivuutta
     let privacyPage;
-    
+
     if (privacyLinks.length > 1){
         privacyPage = privacyLinks[0].href
     }
