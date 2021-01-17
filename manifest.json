@@ -7,8 +7,15 @@
             "matches" : ["<all_urls>"],
             "js": ["content.js"]
         }
-    ], 
+    ],
+    "description": "Favesafe finds a privacy policy page of the website.",
+    "icons": {
+        "16": "./icon/16x.png",
+        "64": "./icon/64x.png",
+        "128": "./icon/128x.png"
+    },
     "browser_action": {
+        "default_icon": "./icon/16x.png",
         "default_popup": "popup.html"
     }, 
     "background": {
